@@ -107,7 +107,6 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 			"categories": categories,
 			"product":    product,
 		}
-
 		temp.Execute(w, data)
 	}
 
@@ -137,7 +136,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 		product.UpdatedAt = time.Now()
 
 		if ok := productmodel.Update(id, product); !ok {
-			http.Redirect(w, r, r.Header.Get("Referer"), http.StatusTemporaryRedirect)
+			http.Redirect(w, r, r.Header.Get("Referer"), http.StatusSeeOther)
 			return
 		}
 
